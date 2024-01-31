@@ -1,5 +1,6 @@
 import readline from 'readline';
 import getUserName from './src/username/getUserName.js';
+import { goUpper, getCurrentDirectory } from './src/navigation/index.js'
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -7,10 +8,11 @@ const rl = readline.createInterface({
 });
 
 const username = getUserName();
-const cwd = process.cwd();
+
 
 console.log(`Welcome to the File Manager, ${username}!`);
-console.log(`You are currently in ${cwd}`);
+getCurrentDirectory();
+
 
 rl.on('line', (line) => {
   const args = line.split(' ');
@@ -18,6 +20,10 @@ rl.on('line', (line) => {
   const path = args[1];
 
   switch (command) {
+    case 'up':
+      goUpper();
+      getCurrentDirectory();
+      break;
     case '.exit':
       console.log(`Thank you for using File Manager, ${username}, goodbye!`);
       process.exit();
@@ -26,6 +32,8 @@ rl.on('line', (line) => {
       console.log('Invalid input');
   }
 });
+
+
 
 rl.on('SIGINT', () => {
   console.log(`Thank you for using File Manager, ${username}, goodbye!`);

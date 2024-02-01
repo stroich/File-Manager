@@ -1,7 +1,7 @@
 import readline from 'readline';
 import getUserName from './src/username/getUserName.js';
 import { goUpper, getCurrentDirectory, changeDirectory, listFiles } from './src/navigation/index.js';
-import { read, add, rename } from './src/basicOperations/index.js';
+import { read, add, rename, remove } from './src/basicOperations/index.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -22,6 +22,13 @@ rl.on('line', async (line) => {
   const arg3 = args[2];
 
   switch (command) {
+    case 'rm':
+      if (path) {
+        remove(path);
+      } else {
+        console.log('Invalid input');
+      }
+      break;
     case 'rn':
       if (path && arg3) {
         rename(path, arg3);

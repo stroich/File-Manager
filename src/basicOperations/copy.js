@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getCurrentDirectory } from '../navigation/index.js';
 
-export function copy(filePath, filePathToNewDir) {
+export function copy(filePath, filePathToNewDir, isDeleteOldFile = false) {
     const cwd = process.cwd();
     const oldPath = path.resolve(cwd, filePath);
 
@@ -20,6 +20,9 @@ export function copy(filePath, filePathToNewDir) {
         readStream.pipe(writeStream);
 
         readStream.on('end', () => {
+            if (isDeleteOldFile) {
+                fs.promises.rm(oldPath);
+            }
             getCurrentDirectory();
         });
 

@@ -1,7 +1,7 @@
 import readline from 'readline';
 import getUserName from './src/username/getUserName.js';
 import { goUpper, getCurrentDirectory, changeDirectory, listFiles } from './src/navigation/index.js';
-import { read, add, rename, remove, copy } from './src/basicOperations/index.js';
+import { read, add, rename, remove, copy, move } from './src/basicOperations/index.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -32,6 +32,13 @@ rl.on('line', async (line) => {
     case 'cp':
       if (path && arg3) {
         copy(path, arg3);
+      } else {
+        console.log('Invalid input');
+      }
+      break;
+    case 'mv':
+      if (path && arg3) {
+        move(path, arg3);
       } else {
         console.log('Invalid input');
       }

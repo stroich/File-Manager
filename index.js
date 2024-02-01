@@ -1,6 +1,6 @@
 import readline from 'readline';
 import getUserName from './src/username/getUserName.js';
-import { goUpper, getCurrentDirectory, changeDirectory } from './src/navigation/index.js'
+import { goUpper, getCurrentDirectory, changeDirectory, listFiles } from './src/navigation/index.js'
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -14,12 +14,15 @@ console.log(`Welcome to the File Manager, ${username}!`);
 getCurrentDirectory();
 
 
-rl.on('line', (line) => {
+rl.on('line', async (line) => {
   const args = line.split(' ');
   const command = args[0];
   const path = args[1];
 
   switch (command) {
+    case 'ls':
+      await listFiles();
+      break;
     case 'cd':
       if (path) {
         changeDirectory(path);

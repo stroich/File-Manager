@@ -1,6 +1,7 @@
 import readline from 'readline';
 import getUserName from './src/username/getUserName.js';
-import { goUpper, getCurrentDirectory, changeDirectory, listFiles } from './src/navigation/index.js'
+import { goUpper, getCurrentDirectory, changeDirectory, listFiles } from './src/navigation/index.js';
+import { read } from './src/basicOperations/index.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -20,6 +21,13 @@ rl.on('line', async (line) => {
   const path = args[1];
 
   switch (command) {
+    case 'cat':
+      if (path) {
+        read(path);
+      } else {
+        console.log('Invalid input');
+      }
+      break;
     case 'ls':
       await listFiles();
       break;

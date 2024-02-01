@@ -16,7 +16,7 @@ getCurrentDirectory();
 
 
 rl.on('line', async (line) => {
-  const args = line.split(' ');
+  const args = line.trim().split(/\s+/);
   const command = args[0];
   const path = args[1];
   const arg3 = args[2];

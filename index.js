@@ -1,7 +1,7 @@
 import readline from 'readline';
 import getUserName from './src/username/getUserName.js';
 import { goUpper, getCurrentDirectory, changeDirectory, listFiles } from './src/navigation/index.js';
-import { read } from './src/basicOperations/index.js';
+import { read, add } from './src/basicOperations/index.js';
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -21,6 +21,13 @@ rl.on('line', async (line) => {
   const path = args[1];
 
   switch (command) {
+    case 'add':
+      if (path) {
+        add(path);
+      } else {
+        console.log('Invalid input');
+      }
+      break;
     case 'cat':
       if (path) {
         read(path);
@@ -44,7 +51,6 @@ rl.on('line', async (line) => {
     case '.exit':
       console.log(`Thank you for using File Manager, ${username}, goodbye!`);
       process.exit();
-      break;
     default:
       console.log('Invalid input');
   }

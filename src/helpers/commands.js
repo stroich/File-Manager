@@ -2,6 +2,7 @@ import { goUpper, changeDirectory, listFiles, getCurrentDirectory } from '../nav
 import { read, add, rename, remove, copy, move } from '../basicOperations/index.js';
 import getUserName from '../username/getUserName.js';
 import { eol, cpus, homedir, username, architecture } from '../os/index.js';
+import { hash } from '../hash/hash.js';
 
 export const commands = {
     rm: (path) => {
@@ -49,6 +50,13 @@ export const commands = {
     cd: (path) => {
         if (path) {
             changeDirectory(path);
+        } else {
+            console.log('Invalid input');
+        }
+    },
+    hash: (path) => {
+        if (path) {
+            hash(path);
         } else {
             console.log('Invalid input');
         }

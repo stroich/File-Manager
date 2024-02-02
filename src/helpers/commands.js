@@ -1,7 +1,7 @@
 import { goUpper, changeDirectory, listFiles, getCurrentDirectory } from '../navigation/index.js';
 import { read, add, rename, remove, copy, move } from '../basicOperations/index.js';
 import getUserName from '../username/getUserName.js';
-import { eol } from '../os/index.js';
+import { eol, cpus } from '../os/index.js';
 
 export const commands = {
     rm: (path) => {
@@ -65,7 +65,7 @@ export const commands = {
                     eol();
                     break;
                 case '--cpus':
-                    // eol();
+                    cpus();
                     break;
                 case '--homedir':
                     // eol();

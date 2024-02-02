@@ -1,7 +1,7 @@
 import { goUpper, changeDirectory, listFiles, getCurrentDirectory } from '../navigation/index.js';
 import { read, add, rename, remove, copy, move } from '../basicOperations/index.js';
 import getUserName from '../username/getUserName.js';
-import { eol, cpus } from '../os/index.js';
+import { eol, cpus, homedir, username, architecture } from '../os/index.js';
 
 export const commands = {
     rm: (path) => {
@@ -54,8 +54,8 @@ export const commands = {
         }
     },
     '.exit': () => {
-        const username = getUserName();
-        console.log(`Thank you for using File Manager, ${username}, goodbye!`);
+        const usernameApp = getUserName();
+        console.log(`Thank you for using File Manager, ${usernameApp}, goodbye!`);
         process.exit();
     },
     'os': (path) => {
@@ -68,13 +68,13 @@ export const commands = {
                     cpus();
                     break;
                 case '--homedir':
-                    // eol();
+                    homedir();
                     break;
                 case '--username':
-                    // eol();
+                    username();
                     break;
                 case '--architecture':
-                    // eol();
+                    architecture();
                     break;
                 default:
                     console.log('Invalid input');

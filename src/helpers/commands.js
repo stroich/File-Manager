@@ -3,6 +3,7 @@ import { read, add, rename, remove, copy, move } from '../basicOperations/index.
 import getUserName from '../username/getUserName.js';
 import { eol, cpus, homedir, username, architecture } from '../os/index.js';
 import { hash } from '../hash/hash.js';
+import { compress, decompress } from '../zip/index.js';
 
 export const commands = {
     rm: (path) => {
@@ -57,6 +58,20 @@ export const commands = {
     hash: (path) => {
         if (path) {
             hash(path);
+        } else {
+            console.log('Invalid input');
+        }
+    },
+    compress: (path, arg3) => {
+        if (path && arg3) {
+            compress(path, arg3);
+        } else {
+            console.log('Invalid input');
+        }
+    },
+    decompress: (path, arg3) => {
+        if (path && arg3) {
+            decompress(path, arg3);
         } else {
             console.log('Invalid input');
         }
